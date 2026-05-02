@@ -2,77 +2,46 @@ package cesde.persistence.repository;
 
 import cesde.domain.Student;
 import cesde.service.portoutput.StudentPersistencePort;
-
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentRepository implements StudentPersistencePort {
 
-    List<Student> students = new ArrayList<>();
+    // Lista para simular la base de datos
+    private static List<Student> students = new ArrayList<>();
 
-    public Student createStudentRepository(Student student){
-
+    @Override
+    public Student createStudentRepository(Student student) {
         students.add(student);
-
-        for (Student student1: students) {
-            System.out.println(student1.getId() + " " + student1.getName() + " " + student1.getLastName());
-        }
-
-
         return student;
-
     }
 
+    @Override
+    public Student getStudentById(int id) {
+        return students.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 
-    public Student getStudentById(int id){
+    @Override
+    public List<Student> getAllStudents() {
+        return new ArrayList<>(students);
+    }
 
-        for (Student student: students) {
-            if(student.getId() == id){
-
-                return student;
+    @Override
+    public Student updateStudentRepository(Student studentActualizado) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == studentActualizado.getId()) {
+                students.set(i, studentActualizado);
+                return studentActualizado;
             }
         }
-
         return null;
     }
 
-    public List<Student> getAllStudents(){
-
-        for(Student student: students){
-            System.out.println(student.getId() + " " + student.getName() + " " + student.getLastName());
-        }
-        return students;
+    @Override
+    public void deleteStudentRepository(int id) {
+        students.removeIf(s -> s.getId() == id);
     }
-
-    public Student updateStudentRepository(int id){
-
-        for (Student student: students) {
-            if(student.getId() == id){
-                return student;
-            }
-        }
-
-        return null;
-    }
-
-
-    public void deleteStudentRepository(int id){
-
-        for (Student student: students) {
-            if(student.getId() == id){
-                students.remove(student);
-                System.out.println("Estudiante eliminado");
-            }
-        }
-
-        System.out.println("Estudiante no encontrado");
-    }
-
-
-
-
-
-
 }

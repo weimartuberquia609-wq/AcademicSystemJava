@@ -1,23 +1,19 @@
 package cesde.domain;
 
-public class Teacher extends User {
 
-    private String speciality;
+
+public class Teacher extends User {
+    private String specialty;
 
     public Teacher() {
         super();
     }
 
-    public Teacher(int id, String name, String lastName, String email, String phone, String password, boolean status, String speciality) {
+    public Teacher(int id, String name, String lastName, String email, String phone, String password, enums.UserStatus status, String specialty) {
         super(id, name, lastName, email, phone, password, status);
-        this.speciality = speciality;
+        this.specialty = specialty;
     }
 
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
+    public String getSpecialty() { return specialty; }
+    public void setSpecialty(String specialty) { this.specialty = specialty; }
 }

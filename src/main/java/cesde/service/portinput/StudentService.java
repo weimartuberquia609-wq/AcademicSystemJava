@@ -1,26 +1,26 @@
 package cesde.service.portinput;
 
 import cesde.domain.Student;
-
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Define las operaciones que el usuario puede realizar desde el menú.
+ */
 public interface StudentService {
 
-    // No tienen atributos
-    // solo tienen metodos , que son la firma de lo que se va a implementar
-    // No se pueden instaciar , solo se pueden implementar
-    // Son una abstraccion total , no tienen nada de implementacion , solo la firma de los metodos
+    // Crea un estudiante solicitando datos por consola
+    Student createStudentService();
 
-    // Contratos
+    // Actualiza un estudiante existente buscando por su ID
+    Student updateStudentService(int id);
 
-    public Student createStudentService();
-    public Student updateStudentService(int id);
-    public Optional<Student> getStudentById(int id);
-    public List<Student> getAllStudents();
-        public void deleteStudent(int id);
+    // Obtiene un estudiante envuelto en Optional para manejar nulos de forma segura
+    Optional<Student> getStudentById(int id);
 
+    // Retorna la lista completa de estudiantes registrados
+    List<Student> getAllStudents();
 
-
-
+    // Elimina un estudiante del sistema
+    void deleteStudent(int id);
 }
